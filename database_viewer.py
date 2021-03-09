@@ -10,7 +10,7 @@ def main():
 
         weakness_command = execute_read(con, 'SELECT weaknesses FROM pokedex WHERE pokemon = "%s"' % (entry))
         resistance_command = execute_read(con, 'SELECT resistances FROM pokedex WHERE pokemon = "%s"' % (entry))
-        #regex removes '[](), to make output more user friendlyu
+        #regex removes '[](), to make output more user friendly
         resistance_command = re.sub(r"['(),\[\]]", "", str(resistance_command))
         weakness_command = re.sub(r"['(),\[\]]", "", str(weakness_command))
         print("Weaknesses:", weakness_command)
