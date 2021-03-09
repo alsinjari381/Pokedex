@@ -100,6 +100,3 @@ def scrape_and_update_db(url, connection):
 
 
 main()
-
-#INSERT INTO pokedex(pokemon, id, weaknesses, resistances)
-#VALUES
