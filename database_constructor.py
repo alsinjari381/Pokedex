@@ -16,7 +16,6 @@ def main():
 '''
         
     execute(con, create_table)
-    #starting_url = 'https://pokemondb.net/pokedex/calyrex'
     starting_url = 'https://pokemondb.net/pokedex/bulbasaur'
     
 
@@ -82,7 +81,8 @@ def scrape_and_update_db(url, connection):
                 super_effective += typeDictionary[i] + " "
             elif re.search("not very effective", str(typeData[i])):
                 not_effective += typeDictionary[i] + " "
-
+            elif re.search("no effect", str(typeData[i])):
+                not_effective += typeDictionary[i] + " "
 
         insert_values = '''
             INSERT INTO
