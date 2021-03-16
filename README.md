@@ -1,5 +1,2 @@
 # Pokedex
-As of now, this project has dubious usefulness unless you happen to search up type resistances a lot while playing Pokemon, 
-and using the internet is needlessly slow(as it is for me). I'm hoping to expand this project to have a GUI and possibly an automatic overlay if I can.
-If you do want to use this proj though, just download and compile the two files, place both in the same directory, run database_constructor.py first, then
-database_viewer.py
+A simple GUI that looks up a Pokemon's type weaknesses and resistances. It is of dubious usefulness, unless you don't have internet or access to Google on your computer. Right now, you cannot compile this project - I have not provided the "types" folder yet. Once I give this project one last big update and make it useful again, I'll make it installable :)
