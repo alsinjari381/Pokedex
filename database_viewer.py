@@ -1,6 +1,7 @@
 import sqlite3, os, re
 from sqlite3 import Error
 
+#Not actually used in the final .EXE, but it is here if you prefer a console over a GUI
 def main():
     con = connection()
     while True:
