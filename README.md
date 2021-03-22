@@ -3,7 +3,7 @@ A simple GUI that looks up a Pokemon's type weaknesses and resistances. Original
 
 ![image](https://user-images.githubusercontent.com/76085879/111940932-2cb4cb80-8a8d-11eb-9e4e-ee464433c438.png)
 
-The program searches an SQLite database and recovers the weaknesses & resistances of a Pokemon. If you press "Enable Gameplay"...
+The program searches an SQLite database and recovers the weaknesses & resistances of a Pokemon. The database is constructed by running the Database Constructor Python script, which scrapes pokemondb.net and creates a database from the subsequent information. If you press "Enable Gameplay"...
 
 ![image](https://user-images.githubusercontent.com/76085879/111940981-48b86d00-8a8d-11eb-886c-38bed465e643.png)
 
