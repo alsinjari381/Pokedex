@@ -1,17 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Drawing.Imaging;
+using Patagames.Ocr;
 
 namespace Pokedex_GUI
 {
     public static class Poke_Img
     {
+
+        //coords of rect for OCR
+        public static Rectangle Snapshot = new Rectangle(0,0,10,10);
+        public static Point top_left, bottom_right;
+        public static int counter; // counts which point we are on whilst forming the rectangle
+       
         // we use this to reference which types are returned by our SQL query
-        private static readonly string[] Poke_Names = new string[] { "Normal", 
+        private static readonly string[] Poke_Names = new string[] { "Normal",
         "Fire", "Water", "Electric", "Grass", "Ice", "Fighting",
         "Poison", "Ground", "Flying", "Psychic", "Bug", "Rock",
         "Ghost", "Dragon", "Dark", "Steel", "Fairy"};
@@ -46,7 +50,7 @@ namespace Pokedex_GUI
             }
 
             // resistances 
-            for (int i = 18, x = 50, y = 340; i < 36 ; i++)
+            for (int i = 18, x = 50, y = 340; i < 36; i++)
             {
                 pictureBoxes[i] = new PictureBox()
                 {
@@ -57,13 +61,13 @@ namespace Pokedex_GUI
 
                 x += 75;
 
-                if ((i + 1) % 3 == 0) 
+                if ((i + 1) % 3 == 0)
                 {
-                    x = 50;  
-                    y += 30; 
+                    x = 50;
+                    y += 30;
                 }
             }
-            
+
         }
 
         public static void Upload_Images(string data, string type) // displays images according to what types returned
@@ -84,6 +88,28 @@ namespace Pokedex_GUI
         {
             for (int i = 0; i < pictureBoxes.Length; i++)
                 pictureBoxes[i].Image = null;
+        }
+
+        public static string Analyze_Screenshot(Creature_Input pokeName)
+        {
+            Bitmap Screen = Screenshot();
+            using (var api = OcrApi.Create())
+            {
+                api.Init(Patagames.Ocr.Enums.Languages.English);
+                string text = api.GetTextFromImage(Screen);
+                pokeName.ChangeText(text);
+              //  MessageBox.Show(text);
+                return text;
+            }
+        }
+
+        private static Bitmap Screenshot() 
+        {
+            //Todo: if rect's dimensions are over 499x499, clip it
+            Bitmap bmp = new Bitmap(Snapshot.Width, Snapshot.Height, PixelFormat.Format32bppArgb);
+            Graphics graph = Graphics.FromImage(bmp);
+            graph.CopyFromScreen(Snapshot.X, Snapshot.Y, 0, 0, bmp.Size, CopyPixelOperation.SourceCopy);
+            return bmp;
         }
     }
 }
