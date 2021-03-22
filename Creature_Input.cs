@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Drawing;
 
@@ -21,5 +20,8 @@ namespace Pokedex_GUI
             this.textBox.Name = "Textbox";
             this.textBox.Font = new Font("Times New Roman", 12);
         }
+
+        public void ChangeText(string name) { this.textBox.Text = name; }
+        
     }
 }
